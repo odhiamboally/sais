@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DP.Application.Dtos.Applicant;
+namespace DP.Application.Dtos.Application;
 public record ApplicantFilter
 {
     public string? Name { get; set; }
@@ -16,6 +16,5 @@ public record ApplicantFilter
     public int? LocationId { get; set; }
     public int? SubLocationId { get; set; }
     public int? VillageId { get; set; }
-    public int PageNumber { get; set; } = 1;
-    public int PageSize { get; set; } = 2;
+    
 }

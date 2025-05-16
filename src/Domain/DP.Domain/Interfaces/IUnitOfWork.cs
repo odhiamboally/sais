@@ -11,6 +11,8 @@ namespace DP.Domain.Interfaces;
 public interface IUnitOfWork
 {
     IUserRepository UserRepository { get; }
+    IApplicantRepository ApplicantRepository { get; }
+    IApplicationRepository ApplicationRepository { get; }
 
 
     Task<int> CompleteAsync();

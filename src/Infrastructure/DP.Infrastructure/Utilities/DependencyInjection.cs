@@ -19,7 +19,7 @@ public static class DependencyInjection
     {
 		try
 		{
-            services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IEmailService, EmailService>();
 
 
             return services;

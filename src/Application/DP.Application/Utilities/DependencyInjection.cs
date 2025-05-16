@@ -37,8 +37,10 @@ public static  class DependencyInjection
             
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IClaimsService, ClaimsService>();
-            services.AddScoped<IEmailService, EmailService>();
-            
+
+            services.AddScoped<IApplicantService, ApplicantService>();
+            services.AddScoped<IApplicationService, ApplicationService>();
+
             switch (cacheSettings.CacheType)
             {
                 case string type when type.Equals("redis", StringComparison.OrdinalIgnoreCase):

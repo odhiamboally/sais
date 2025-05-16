@@ -15,7 +15,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DP.Application.Contracts.Implementations.Services;
+namespace DP.Infrastructure.Implementations.Services;
 internal sealed class EmailService : IEmailService
 {
     private readonly EmailSettings _emailSettings;
@@ -26,6 +26,38 @@ internal sealed class EmailService : IEmailService
         _emailSettings = emailSettings.Value;
         _cache = cache;
 
+    }
+
+    public async Task<ApiResponse<SendEmailResponse>> SendEmailAsync(SendEmailRequest sendEmailRequest)
+    {
+        try
+        {
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_emailSettings.FromAddress!),
+                Subject = sendEmailRequest.Subject,
+                Body = sendEmailRequest.Body,
+                IsBodyHtml = true
+            };
+
+            mailMessage.To.Add(sendEmailRequest.To!);
+
+            using var client = new SmtpClient(_emailSettings.SmtpServer, _emailSettings.Port)
+            {
+                Credentials = new System.Net.NetworkCredential(_emailSettings.Username, _emailSettings.Password),
+                EnableSsl = true
+            };
+
+            await client.SendMailAsync(mailMessage);
+
+            return ApiResponse<SendEmailResponse>.Success("", new SendEmailResponse());
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 
     public async Task<string> ApplyTemplateAsync(string templateName, Dictionary<string, string> replacements)
@@ -77,35 +109,5 @@ internal sealed class EmailService : IEmailService
         }
     }
 
-    public async Task<ApiResponse<SendEmailResponse>> SendEmailAsync(SendEmailRequest sendEmailRequest)
-    {
-        try
-        {
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress(_emailSettings.FromAddress!),
-                Subject = sendEmailRequest.Subject,
-                Body = sendEmailRequest.Body,
-                IsBodyHtml = true
-            };
-
-            mailMessage.To.Add(sendEmailRequest.To!);
-
-            using var client = new SmtpClient(_emailSettings.SmtpServer, _emailSettings.Port)
-            {
-                Credentials = new System.Net.NetworkCredential(_emailSettings.Username, _emailSettings.Password),
-                EnableSsl = true
-            };
-
-            await client.SendMailAsync(mailMessage);
-
-            return ApiResponse<SendEmailResponse>.Success("", new SendEmailResponse());
-            
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-    }
+    
 }

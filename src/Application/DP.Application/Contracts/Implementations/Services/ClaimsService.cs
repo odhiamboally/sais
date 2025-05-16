@@ -31,9 +31,7 @@ internal sealed class ClaimsService : IClaimsService
                     new Claim(ClaimTypes.NameIdentifier, appUser.Id.ToString()),
                     new Claim("Username", appUser.UserName!),
                     new Claim("Password", appUser.PasswordHash!),
-                    new Claim("Firstname", appUser.FirstName!),
-                    new Claim("Lastname", appUser.LastName!),
-                    new Claim(ClaimTypes.Name, string.Concat(appUser.FirstName, " ", appUser.LastName)),
+                    new Claim(ClaimTypes.Name, appUser.FullName!),
                     new Claim(ClaimTypes.Email, appUser.Email!)
                 };
 

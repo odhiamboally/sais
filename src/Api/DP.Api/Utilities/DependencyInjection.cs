@@ -104,8 +104,6 @@ public static class DependencyInjection
             });
 
 
-            var serviceMappings = configuration.GetSection("ServiceMappings").Get<Dictionary<string, string>>();
-
             services.AddValidatorsFromAssembly(assembly);
 
 
@@ -129,10 +127,6 @@ public static class DependencyInjection
             configuration.GetSection("JwtSettings").Bind(jwtSettings);
 
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-
-            services.AddIdentity<AppUser, IdentityRole>()
-                .AddEntityFrameworkStores<DBContext>()
-                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {

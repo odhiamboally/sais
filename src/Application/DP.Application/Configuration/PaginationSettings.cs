@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DP.Application.Configuration;
-public record PaginationSetting
+public record PaginationSettings
 {
-    public int DefaultPageSize { get; init; } = 50;
+    public int DefaultPageSize { get; init; } = 2;
     public int MaxPageSize { get; init; } = 100; 
     public bool IsLastPage { get; init; } = false;
     public bool IsFirstPage { get; init; } = false;

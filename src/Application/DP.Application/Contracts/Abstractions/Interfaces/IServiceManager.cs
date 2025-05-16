@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 namespace DP.Application.Contracts.Abstractions.Interfaces;
 public interface IServiceManager
 {
-    IIdentityService AuthService { get; }
+    IApplicantService ApplicantService { get; }
+    IApplicationService ApplicationService { get; }
     IEmailService EmailService { get; }
     
 

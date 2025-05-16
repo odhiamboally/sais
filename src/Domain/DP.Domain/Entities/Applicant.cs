@@ -1,4 +1,5 @@
-﻿using EssPortal.Domain.Enums.NavEnums;
+﻿
+using Microsoft.AspNetCore.Identity;
 
 using System;
 using System.Collections.Generic;
@@ -10,25 +11,41 @@ using System.Threading.Tasks;
 namespace DP.Domain.Entities;
 public class Applicant
 {
-    [Key]
+    
     public int Id { get; set; }
-    public DateTimeOffset ApplicationDate { get; set; }
     public string? FirstName { get; set; }
     public string? MiddleName { get; set; }
     public string? LastName { get; set; }
-    public int SexId { get; set; }
+    public DateTimeOffset DateOfBirth { get; set; }
     public int Age { get; set; }
-    public int MaritalStatusId { get; set; }
-    public string? IdentificationNumber { get; set; } // ID/Passport (alphanumeric, max 20 chars)
-    public int? VillageId { get; set; } // From geo-location hierarchy
+
+    [Key]
+    public string? IDNumber { get; set; }
     public string? PostalAddress { get; set; }
     public string? PhysicalAddress { get; set; }
     public string? TelephoneContact { get; set; }
-    public string? ApplicationStatus { get; set; } // For approval workflow
+    public int SexId { get; set; }
+    public int MaritalStatusId { get; set; }
+    public int CountyId { get; set; }
+    public int SubCountyId { get; set; }
+    public int LocationId { get; set; }
+    public int SubLocationId { get; set; }
+    public int VillageId { get; set; }
 
-    // Navigation properties
-    public Sex Sex { get; set; }
-    public MaritalStatus MaritalStatus { get; set; }
-    public Village Village { get; set; }
-    public ICollection<ApplicantProgram> ApplicantPrograms { get; set; }
+    
+    public string? NameSignature { get; set; }
+    public byte[]? ImageSignature { get; set; }
+    public bool IsDeleted { get; set; }
+
+    public Sex? Sex { get; set; }
+    public MaritalStatus? MaritalStatus { get; set; }
+    public County? County { get; set; }
+    public SubCounty? SubCounty { get; set; }
+    public Location? Location { get; set; }
+    public SubLocation? SubLocation { get; set; }
+    public Village? Village { get; set; }
+    
+
+
+
 }

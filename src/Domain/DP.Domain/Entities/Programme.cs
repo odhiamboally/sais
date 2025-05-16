@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DP.Domain.Entities;
-public class MaritalStatus : LookupBase
+public class Programme : LookupBase
 {
+
 }

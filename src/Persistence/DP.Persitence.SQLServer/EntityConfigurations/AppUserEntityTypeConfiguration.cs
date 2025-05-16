@@ -15,12 +15,12 @@ internal sealed class AppUserEntityTypeConfiguration : IEntityTypeConfiguration<
     public void Configure(EntityTypeBuilder<AppUser> builder)
     {
         builder
-            .Property(s => s.FirstName)
+            .Property(s => s.Email)
             .IsRequired();
 
         builder
-            .Property(s => s.LastName)
-        .IsRequired();
+            .Property(s => s.PasswordHash)
+            .IsRequired();
 
     }
 }

@@ -25,9 +25,5 @@ public static class DtoExtesntions
         return model;
     }
 
-    public static VerifyCodeRequest UpdateUserId(this VerifyCodeRequest model, string userId)
-    {
-        return model with { UserId = userId };
-    }
 
 }

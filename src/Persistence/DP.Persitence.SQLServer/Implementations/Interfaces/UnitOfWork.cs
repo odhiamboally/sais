@@ -15,12 +15,18 @@ namespace DP.Persistence.SQLServer.Implementations.Intefaces;
 public class UnitOfWork : IUnitOfWork
 {
     public IUserRepository UserRepository { get; private set; }
+    public IApplicantRepository ApplicantRepository { get; private set; }
+    public IApplicationRepository ApplicationRepository { get; private set; }
     
 
     private readonly DBContext _context;
 
     public UnitOfWork(
         IUserRepository userRepository,
+        IApplicantRepository applicantRepository,
+        IApplicationRepository applicationRepository,
+
+        
 
         DBContext Context
 
@@ -29,6 +35,8 @@ public class UnitOfWork : IUnitOfWork
     {
 
         UserRepository = userRepository;
+        ApplicantRepository = applicantRepository;
+        ApplicationRepository = applicationRepository;
 
         _context = Context;
         

@@ -19,7 +19,13 @@ public class DBContext : IdentityDbContext<AppUser>
 
     #region Sets
 
-    public DbSet<AppUser>? AppUsers { get; set; }
+    public DbSet<Applicant> Applicants { get; set; }
+    public DbSet<MaritalStatus> MaritalStatuses { get; set; }
+    public DbSet<Village> Villages { get; set; }
+    public DbSet<Location> Locations { get; set; }
+    public DbSet<SubLocation> SubLocations { get; set; }
+    public DbSet<SubCounty> SubCounties { get; set; }
+    public DbSet<County> Counties { get; set; }
 
     #endregion
 
@@ -34,13 +40,6 @@ public class DBContext : IdentityDbContext<AppUser>
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(DBContext).Assembly);
 
-    }
-
-    public static DBContext Create()
-    {
-        var optionsBuilder = new DbContextOptionsBuilder<DBContext>();
-        optionsBuilder.UseSqlServer("Connection");
-        return new DBContext(optionsBuilder.Options);
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

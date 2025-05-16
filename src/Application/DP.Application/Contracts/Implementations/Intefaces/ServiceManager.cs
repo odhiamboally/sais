@@ -11,19 +11,22 @@ using System.Threading.Tasks;
 namespace DP.Application.Contracts.Implementations.Intefaces;
 internal sealed class ServiceManager : IServiceManager
 {
-    public IIdentityService AuthService { get; }
+    public IApplicantService ApplicantService { get; }
+    public IApplicationService ApplicationService { get; }
     public IEmailService EmailService { get; }
     
 
     public ServiceManager(
-        IIdentityService accountService,
+        IApplicantService applicantService,
+        IApplicationService applicationService,
         IEmailService emailService
         
 
         )
     {
-        AuthService = accountService;
-        EmailService = emailService;
+        ApplicantService = applicantService ?? throw new ArgumentNullException(nameof(applicantService));
+        ApplicationService = applicationService ?? throw new ArgumentNullException(nameof(applicationService));
+        EmailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
 
     }
 }

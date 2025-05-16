@@ -1,7 +1,7 @@
 ﻿using DP.Application.Configuration;
 using DP.Application.Contracts.Abstractions.IServices;
 using DP.Application.Dtos.Common;
-using DP.Application.Utilities;
+using DP.Application.Extensions;
 using DP.Domain.Entities;
 
 using Microsoft.AspNetCore.Identity;
